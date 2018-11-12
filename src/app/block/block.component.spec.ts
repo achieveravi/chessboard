@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BlockComponent } from './block.component';
-import { COLOR } from '../constants';
+import { TEAM } from '../constants';
 
 describe('BlockComponent', () => {
   let component: BlockComponent;
@@ -17,7 +17,7 @@ describe('BlockComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BlockComponent);
     component = fixture.componentInstance;
-    component.color = COLOR.WHITE;
+    component.color = TEAM.WHITE;
     fixture.detectChanges();
   });
 
@@ -30,7 +30,7 @@ describe('BlockComponent', () => {
   });
 
   it('should have white color, when set white', () => {
-    expect(component.color).toBe(COLOR.WHITE);
+    expect(component.color).toBe(TEAM.WHITE);
   })
 
 });

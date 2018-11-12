@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
+import { Position } from '../position';
 
 
 @Component({
@@ -19,8 +20,8 @@ export class BlockComponent implements OnInit {
   ngOnInit() {
   }
 
-  getCoordinates(): any {
-    return {x: this.hCoordinate, y: this.vCoordinate};
+  getCoordinates(): Position {
+    return new Position(this.hCoordinate, this.vCoordinate);
   }
 
   getColor(): string {
