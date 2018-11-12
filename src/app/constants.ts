@@ -10,5 +10,5 @@ export enum PIECE {
     BISHOP = 'bishop',
     KNIGHT = 'knight',
     QUEEN = 'queen',
-    KING = 'KING'
+    KING = 'king'
 }

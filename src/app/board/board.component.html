@@ -1,8 +1,25 @@
 <div class="board-border">
   <div *ngFor="let v of vCoordinates; let evenRow = even; let oddRow = odd" class="row">
     <div *ngFor="let h of hCoordinates; let evenBlock = even; let oddBlock = odd" class="board-block">
-      <app-block *ngIf="(evenRow && evenBlock) || (oddRow && oddBlock)" [hCoordinate]="h" [vCoordinate]="v" [color]="'white'"></app-block>
-      <app-block *ngIf="(evenRow && oddBlock) || (oddRow && evenBlock)" [hCoordinate]="h" [vCoordinate]="v" [color]="'black'"></app-block>
+      <app-block [hCoordinate]="h" [vCoordinate]="v"></app-block>
+      <!-- <app-block *ngIf="vCoordinate === 2" [team]="'white'" [hCoordinate]="h" [vCoordinate]="v" [pieceType]="pawn"></app-block>
+      <app-block *ngIf="vCoordinate === 7" [team]="'black'" [hCoordinate]="h" [vCoordinate]="v" [pieceType]="pawn"></app-block>
+      
+      <app-block *ngIf="vCoordinate === 1 && (hCoordinate === 1 || hCoordinate === 8)" [hCoordinate]="h" [vCoordinate]="v" [pieceType]="rook" [team]="'white'"></app-block>
+      <app-block *ngIf="vCoordinate === 8 && (hCoordinate === 1 || hCoordinate === 8)" [hCoordinate]="h" [vCoordinate]="v" [pieceType]="rook" [team]="'black'"></app-block>
+      
+      <app-block *ngIf="vCoordinate === 1 && (hCoordinate === 2 || hCoordinate === 7)" [hCoordinate]="h" [vCoordinate]="v" [pieceType]="knight" [team]="'white'"></app-block>
+      <app-block *ngIf="vCoordinate === 8 && (hCoordinate === 2 || hCoordinate === 7)" [hCoordinate]="h" [vCoordinate]="v" [pieceType]="knight" [team]="'black'"></app-block>
+      
+      <app-block *ngIf="vCoordinate === 1 && (hCoordinate === 3 || hCoordinate === 6)" [hCoordinate]="h" [vCoordinate]="v" [pieceType]="bishop" [team]="'white'"></app-block>
+      <app-block *ngIf="vCoordinate === 8 && (hCoordinate === 3 || hCoordinate === 6)" [hCoordinate]="h" [vCoordinate]="v" [pieceType]="bishop" [team]="'black'"></app-block>
+      
+      <app-block *ngIf="vCoordinate === 1 && hCoordinate === 5" [pieceType]="queen" [hCoordinate]="h" [vCoordinate]="v" [team]="'white'"></app-block>
+      <app-block *ngIf="vCoordinate === 8 && hCoordinate === 4" [pieceType]="queen" [hCoordinate]="h" [vCoordinate]="v" [team]="'black'"></app-block>
+      
+      <app-block *ngIf="vCoordinate === 1 && hCoordinate === 4" [pieceType]="king" [hCoordinate]="h" [vCoordinate]="v" [team]="'white'"></app-block>
+      <app-block *ngIf="vCoordinate === 8 && hCoordinate === 5" [pieceType]="king" [hCoordinate]="h" [vCoordinate]="v" [team]="'black'"></app-block> -->
+      <!-- <app-block *ngIf="(evenRow && oddBlock) || (oddRow && evenBlock)" [hCoordinate]="h" [vCoordinate]="v" [color]="'black'"></app-block> -->
     </div>
   </div>
 </div>

@@ -11,6 +11,7 @@ import { BishopComponent } from './pieces/bishop/bishop.component';
 import { KnightComponent } from './pieces/knight/knight.component';
 import { QueenComponent } from './pieces/queen/queen.component';
 import { KingComponent } from './pieces/king/king.component';
+import { PiecesFactoryComponent } from './pieces-factory/pieces-factory.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { KingComponent } from './pieces/king/king.component';
     BishopComponent,
     KnightComponent,
     QueenComponent,
-    KingComponent
+    KingComponent,
+    PiecesFactoryComponent
   ],
   imports: [
     BrowserModule

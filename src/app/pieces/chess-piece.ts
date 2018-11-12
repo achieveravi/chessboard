@@ -1,6 +1,7 @@
 import { Position } from "../position";
 import { TEAM } from "../constants";
 import { Input } from "@angular/core";
+import { PieceModel } from "../pieces-factory/pieces.model";
 
 export abstract class ChessPiece {
     
@@ -10,5 +11,5 @@ export abstract class ChessPiece {
     abstract isMoveAllowed(): boolean;
     abstract getTeam(): TEAM.BLACK | TEAM.WHITE;
     
-    @Input() team: TEAM.BLACK | TEAM.WHITE;
+    @Input() piece: PieceModel;
 }
