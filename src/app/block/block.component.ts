@@ -25,7 +25,6 @@ export class BlockComponent implements OnInit {
   }
 
   getColor(): string {
-    console.log(this.color);
     return this.color;
   }
 
