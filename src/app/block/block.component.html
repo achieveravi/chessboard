@@ -1,3 +1,21 @@
 
-<div *ngIf="getColor()=='white'" class="block white"></div>
-<div *ngIf="getColor()=='black'" class="block black"></div>
+<div [ngClass]="'block ' + getColor()">
+    <app-pawn *ngIf="vCoordinate === 2" [team]="'white'"></app-pawn>
+    <app-pawn *ngIf="vCoordinate === 7" [team]="'black'"></app-pawn>
+
+    <app-rook *ngIf="vCoordinate === 1 && (hCoordinate === 1 || hCoordinate === 8)" [team]="'white'"></app-rook>
+    <app-rook *ngIf="vCoordinate === 8 && (hCoordinate === 1 || hCoordinate === 8)" [team]="'black'"></app-rook>
+
+    <app-knight *ngIf="vCoordinate === 1 && (hCoordinate === 2 || hCoordinate === 7)" [team]="'white'"></app-knight>
+    <app-knight *ngIf="vCoordinate === 8 && (hCoordinate === 2 || hCoordinate === 7)" [team]="'black'"></app-knight>
+
+    <app-bishop *ngIf="vCoordinate === 1 && (hCoordinate === 3 || hCoordinate === 6)" [team]="'white'"></app-bishop>
+    <app-bishop *ngIf="vCoordinate === 8 && (hCoordinate === 3 || hCoordinate === 6)" [team]="'black'"></app-bishop>
+
+    <app-queen *ngIf="vCoordinate === 1 && hCoordinate === 5" [team]="'white'"></app-queen>
+    <app-queen *ngIf="vCoordinate === 8 && hCoordinate === 4" [team]="'black'"></app-queen>
+
+    <app-king *ngIf="vCoordinate === 1 && hCoordinate === 4" [team]="'white'"></app-king>
+    <app-king *ngIf="vCoordinate === 8 && hCoordinate === 5" [team]="'black'"></app-king>
+
+</div>
