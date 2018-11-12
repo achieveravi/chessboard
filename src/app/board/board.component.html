@@ -1,0 +1,8 @@
+<div class="board-border">
+  <div *ngFor="let v of vCoordinates; let evenRow = even; let oddRow = odd" class="row">
+    <div *ngFor="let h of hCoordinates; let evenBlock = even; let oddBlock = odd" class="block">
+      <app-block *ngIf="(evenRow && evenBlock) || (oddRow && oddBlock)" [hCoordinate]="h" [vCoordinate]="v" [color]="'white'"></app-block>
+      <app-block *ngIf="(evenRow && oddBlock) || (oddRow && evenBlock)" [hCoordinate]="h" [vCoordinate]="v" [color]="'black'"></app-block>
+    </div>
+  </div>
+</div>

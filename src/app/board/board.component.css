@@ -1,0 +1,16 @@
+.row {
+    width: 640px;
+    text-align: center;
+}
+
+.block {
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+}
+
+.board-border {
+    border-style: outset;
+    border-width: 10px;
+    width: 640px;
+}
