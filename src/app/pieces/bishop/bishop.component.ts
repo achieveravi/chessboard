@@ -19,12 +19,14 @@ export class BishopComponent extends ChessPiece implements OnInit {
     return new Position(0,0);
   }
 
-  move(): void {
-
+  move(newPos: Position): void {
+    if (this.isMoveAllowed(newPos)) {
+      this.piece.position = newPos;
+    }
   }
 
-  isMoveAllowed(): boolean {
-    return false;
+  isMoveAllowed(newPos: Position): boolean {
+    return Math.abs(newPos.y - this.piece.position.y) === Math.abs(newPos.x - this.piece.position.x)
   }
 
   getTeam(): TEAM.BLACK | TEAM.WHITE {

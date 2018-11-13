@@ -30,6 +30,9 @@ import { PiecesFactoryComponent } from './pieces-factory/pieces-factory.componen
   imports: [
     BrowserModule
   ],
+  entryComponents: [
+    PiecesFactoryComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

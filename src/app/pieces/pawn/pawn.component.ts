@@ -19,12 +19,8 @@ export class PawnComponent extends ChessPiece implements OnInit {
     return new Position(0,0);
   }
 
-  move(): void {
-
-  }
-
-  isMoveAllowed(): boolean {
-    return false;
+  isMoveAllowed(newPos: Position): boolean {
+    return newPos.y - this.piece.position.y === 1 && newPos.x === this.piece.position.x;
   }
 
   getTeam(): TEAM.BLACK | TEAM.WHITE {

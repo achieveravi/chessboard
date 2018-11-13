@@ -19,11 +19,12 @@ export class RookComponent extends ChessPiece implements OnInit {
     return new Position(0,0);
   }
 
-  move(): void {
-
-  }
-
-  isMoveAllowed(): boolean {
+  isMoveAllowed(newPos: Position): boolean {
+    if (newPos.y - this.piece.position.y) {
+      return newPos.x === this.piece.position.x; 
+    } else if (newPos.x - this.piece.position.x) {
+      return newPos.y === this.piece.position.y;
+    }
     return false;
   }
 

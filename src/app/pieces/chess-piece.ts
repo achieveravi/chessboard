@@ -7,9 +7,16 @@ export abstract class ChessPiece {
     
     type: string;
     abstract getPosition(): Position;
-    abstract move(): void;
-    abstract isMoveAllowed(): boolean;
+    abstract isMoveAllowed(newPos?: Position): boolean;
     abstract getTeam(): TEAM.BLACK | TEAM.WHITE;
     
     @Input() piece: PieceModel;
+    
+    move(newPos: Position): void {
+        if (this.isMoveAllowed(newPos)) {
+            this.piece.position = newPos
+        } else {
+            throw new Error('Move not allowed!');
+        }
+    }
 }

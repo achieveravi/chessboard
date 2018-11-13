@@ -19,11 +19,12 @@ export class KnightComponent extends ChessPiece implements OnInit {
     return new Position(0,0);
   }
 
-  move(): void {
-
-  }
-
-  isMoveAllowed(): boolean {
+  isMoveAllowed(newPos: Position): boolean {
+    if (Math.abs(newPos.y - this.piece.position.y) === 2) {
+      return Math.abs(newPos.x - this.piece.position.x) === 1;
+    } else if (Math.abs(newPos.x - this.piece.position.x) === 2) {
+      return Math.abs(newPos.y - this.piece.position.y) === 1;
+    }
     return false;
   }
 
