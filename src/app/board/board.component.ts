@@ -16,6 +16,8 @@ export class BoardComponent implements OnInit, AfterContentChecked {
   hCoordinates = [1, 2, 3, 4, 5, 6, 7, 8];
   vCoordinates = [1, 2, 3, 4, 5, 6, 7, 8];
 
+  gameStarted: boolean = false;
+
   public rowColor = this.rowColor ? (TEAM.BLACK ? TEAM.WHITE : TEAM.BLACK) : TEAM.WHITE;
 
   constructor() { }
@@ -28,10 +30,11 @@ export class BoardComponent implements OnInit, AfterContentChecked {
   }
 
   startGame() {
-    if (this.blockComponents) {
+    if (!this.gameStarted && this.blockComponents) {
       this.blockComponents.forEach((block: BlockComponent) => {
         this.initializeBlockWithPieces(block);
       });
+      this.gameStarted = true;
     }
   }
 

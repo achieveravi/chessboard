@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TEAM } from '../constants';
 import { PieceModel } from './pieces.model';
 
@@ -10,6 +9,11 @@ import { PieceModel } from './pieces.model';
 })
 export class PiecesFactoryComponent {
 
-  @Input() piece: PieceModel;
+  piece: PieceModel;
+  @Output() moveSuccess: EventEmitter<PieceModel> = new EventEmitter<PieceModel>();;
+
+  dragEndHandler(event: any) {
+    this.moveSuccess.emit(this.piece);
+  }
 
 }

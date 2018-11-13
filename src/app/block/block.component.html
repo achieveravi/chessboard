@@ -1,5 +1,5 @@
 
-<div [ngClass]="'block ' + color">
+<div [ngClass]="'block ' + color" droppable (onDrop)="onPieceDrop($event)">
     <ng-template #container>
 
     </ng-template>

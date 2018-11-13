@@ -4,6 +4,7 @@ import { Position } from '../position';
 import { TEAM } from '../constants';
 import { PieceModel } from '../pieces-factory/pieces.model';
 import { PiecesFactoryComponent } from '../pieces-factory/pieces-factory.component';
+import { DropEvent } from 'ng-drag-drop';
 
 
 @Component({
@@ -48,6 +49,9 @@ export class BlockComponent implements OnInit {
     let componentFactory = this.compFactoryResolver.resolveComponentFactory(PiecesFactoryComponent);
     const piecesFactoryComponent: PiecesFactoryComponent = this.containerRef.createComponent(componentFactory).instance;
     piecesFactoryComponent.piece = piece;
+    piecesFactoryComponent.moveSuccess.subscribe((successfullyMovedPiece: PieceModel) => {
+      this.removePiece();
+    })
 
     this.childrenReferences.push(piecesFactoryComponent);
 
@@ -57,6 +61,10 @@ export class BlockComponent implements OnInit {
     if (this.childrenReferences.length > 0) {
       this.containerRef.remove(0);
     }
+  }
+
+  onPieceDrop(event: DropEvent) {
+    this.addPiece(<PieceModel>event.dragData);
   }
 
 

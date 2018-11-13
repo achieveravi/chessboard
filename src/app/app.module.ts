@@ -12,6 +12,7 @@ import { KnightComponent } from './pieces/knight/knight.component';
 import { QueenComponent } from './pieces/queen/queen.component';
 import { KingComponent } from './pieces/king/king.component';
 import { PiecesFactoryComponent } from './pieces-factory/pieces-factory.component';
+import { NgDragDropModule } from 'ng-drag-drop';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { PiecesFactoryComponent } from './pieces-factory/pieces-factory.componen
     PiecesFactoryComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    NgDragDropModule.forRoot()
   ],
   entryComponents: [
     PiecesFactoryComponent
