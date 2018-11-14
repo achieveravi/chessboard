@@ -69,6 +69,7 @@ export class BlockComponent implements OnInit {
 
   onPieceDrop(event: DropEvent) {
     this.dropSuccess.emit(<PieceModel>event.dragData);
+    this.removePiece();
     this.addPiece(<PieceModel>event.dragData);
     this.boardStateService.boardState.delete((<PieceModel>event.dragData).position.getKey())
   }
