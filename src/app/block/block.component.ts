@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { Input } from '@angular/core';
 import { Position } from '../position';
 import { TEAM } from '../constants';
 import { PieceModel } from '../pieces-factory/pieces.model';
 import { PiecesFactoryComponent } from '../pieces-factory/pieces-factory.component';
 import { DropEvent } from 'ng-drag-drop';
+import { BoardStateService } from '../board/board-state.service';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class BlockComponent implements OnInit {
   @Input() hCoordinate: number;
   @Input() vCoordinate: number;
 
+  @Output() dropSuccess: EventEmitter<PieceModel> = new EventEmitter<PieceModel>();
+
   childrenReferences = [];
   
   piece: PieceModel;
@@ -26,7 +29,8 @@ export class BlockComponent implements OnInit {
   color: string;
 
 
-  constructor(private compFactoryResolver: ComponentFactoryResolver) { }
+  constructor(private compFactoryResolver: ComponentFactoryResolver,
+              private boardStateService: BoardStateService) { }
 
   ngOnInit() {
     this.fillColor();
@@ -48,11 +52,10 @@ export class BlockComponent implements OnInit {
   addPiece(piece: PieceModel) {
     let componentFactory = this.compFactoryResolver.resolveComponentFactory(PiecesFactoryComponent);
     const piecesFactoryComponent: PiecesFactoryComponent = this.containerRef.createComponent(componentFactory).instance;
+    piece.position = this.getCoordinates();
     piecesFactoryComponent.piece = piece;
-    piecesFactoryComponent.moveSuccess.subscribe((successfullyMovedPiece: PieceModel) => {
-      this.removePiece();
-    })
-
+    this.piece = piece;
+    this.boardStateService.boardState.set(this.getCoordinates().getKey(), piece);
     this.childrenReferences.push(piecesFactoryComponent);
 
   }
@@ -60,11 +63,22 @@ export class BlockComponent implements OnInit {
   removePiece() {
     if (this.childrenReferences.length > 0) {
       this.containerRef.remove(0);
+      this.piece = null;
     }
   }
 
   onPieceDrop(event: DropEvent) {
+    this.dropSuccess.emit(<PieceModel>event.dragData);
     this.addPiece(<PieceModel>event.dragData);
+    this.boardStateService.boardState.delete((<PieceModel>event.dragData).position.getKey())
+  }
+
+  isDropAllowed = (dragData: PieceModel): boolean => {
+    if (this.childrenReferences.length > 0 && this.piece) {
+      return (<PiecesFactoryComponent>this.childrenReferences[0]).piece.team !== dragData.team && 
+      this.boardStateService.isMoveAllowed(dragData, this.getCoordinates());
+    }
+    return this.boardStateService.isMoveAllowed(dragData, this.getCoordinates());
   }
 
 

@@ -6,4 +6,8 @@ export class Position {
         this.x = hPos;
         this.y = vPos;
     }
+
+    getKey(): string {
+        return 'h'+ this.x + 'v' + this.y;
+    }
 }

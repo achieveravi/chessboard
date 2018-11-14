@@ -3,6 +3,7 @@ import { TEAM, PIECE } from '../constants';
 import { BlockComponent } from '../block/block.component';
 import { PieceModel } from '../pieces-factory/pieces.model';
 import { Position } from '../position';
+import { BoardStateService } from './board-state.service';
 
 @Component({
   selector: 'app-board',
@@ -20,7 +21,7 @@ export class BoardComponent implements OnInit, AfterContentChecked {
 
   public rowColor = this.rowColor ? (TEAM.BLACK ? TEAM.WHITE : TEAM.BLACK) : TEAM.WHITE;
 
-  constructor() { }
+  constructor(private boardStateService: BoardStateService) { }
 
   ngOnInit() {
   }
@@ -30,9 +31,13 @@ export class BoardComponent implements OnInit, AfterContentChecked {
   }
 
   startGame() {
+    this.boardStateService.createInitialState();
     if (!this.gameStarted && this.blockComponents) {
       this.blockComponents.forEach((block: BlockComponent) => {
-        this.initializeBlockWithPieces(block);
+        if (this.boardStateService.boardState.get(block.getCoordinates().getKey())) {
+          block.addPiece(this.boardStateService.boardState.get(block.getCoordinates().getKey()))
+        }
+        // this.initializeBlockWithPieces(block);
       });
       this.gameStarted = true;
     }
@@ -88,5 +93,20 @@ export class BoardComponent implements OnInit, AfterContentChecked {
     }
   }
   
+  resetGame() {
+    this.gameStarted = false;
+    this.blockComponents.forEach((block: BlockComponent) => {
+      block.removePiece();
+    });
+    this.startGame();
+  }
+
+  onDropSuccess(piece: PieceModel) {
+    this.blockComponents.forEach((block: BlockComponent) => {
+      if (block.getCoordinates().getKey() === piece.position.getKey()) {
+        block.removePiece();
+      }
+    });
+  }
 
 }

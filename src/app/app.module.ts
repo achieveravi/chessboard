@@ -13,6 +13,7 @@ import { QueenComponent } from './pieces/queen/queen.component';
 import { KingComponent } from './pieces/king/king.component';
 import { PiecesFactoryComponent } from './pieces-factory/pieces-factory.component';
 import { NgDragDropModule } from 'ng-drag-drop';
+import { BoardStateService } from './board/board-state.service';
 
 
 @NgModule({
@@ -35,7 +36,9 @@ import { NgDragDropModule } from 'ng-drag-drop';
   entryComponents: [
     PiecesFactoryComponent
   ],
-  providers: [],
+  providers: [
+    BoardStateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

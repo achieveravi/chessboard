@@ -1,4 +1,4 @@
-<div draggable [dragData]="piece" (onDragEnd)="dragEndHandler($event)">
+<div draggable [dragData]="piece">
     <app-pawn *ngIf="piece && piece.type === 'pawn'" [piece]="piece"></app-pawn>
     <app-bishop *ngIf="piece && piece.type === 'bishop'" [piece]="piece"></app-bishop>
     <app-knight *ngIf="piece && piece.type === 'knight'" [piece]="piece"></app-knight>

@@ -2,9 +2,9 @@
   <div class="board-border">
     <div *ngFor="let v of vCoordinates; let evenRow = even; let oddRow = odd" class="row">
       <div *ngFor="let h of hCoordinates; let evenBlock = even; let oddBlock = odd" class="board-block">
-        <app-block [hCoordinate]="h" [vCoordinate]="v"></app-block>
+        <app-block [hCoordinate]="h" [vCoordinate]="v" (dropSuccess)="onDropSuccess($event)"></app-block>
       </div>
     </div>
   </div>
-  <button>Reset</button>
+  <button (click)="resetGame()">Reset</button>
 </div>
